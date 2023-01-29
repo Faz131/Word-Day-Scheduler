@@ -23,37 +23,37 @@ $(function (pastInput) {
 
 // Add the event listener that will save to local storage on click
 
-$(document).ready(function () {
-
-  // var getItem = localStorage.getItem('save')
-
-
-  $('#saveBtn9am').click(function () {
-    let textPast = $('#textAreaPast').val();
-
-    console.log('text', textPast)
-
-
-    localStorage.setItem('9am', textPast)
-  })
-  //   // var getItem = localStorage.getItem('save')
 
 
 
 
+$('#saveBtn9am').click(function () {
+  let textPast = $('#textAreaPast').val();
+  console.log('9am', textPast);
+  // localStorage.setItem('9am', textPast);
+
+  localStorage.setItem('9am', JSON.stringify(textPast));
 });
 
-$(document).ready(function () {
-  $('#saveBtn10am').click(function () {
-    let textPresent = $('#textAreaPresent').val();
 
-    console.log('10am', textPresent);
+document.getElementById('textAreaPast').innerHTML
+  = JSON.parse(localStorage.getItem('9am'));
 
 
-    localStorage.setItem('10am', textPresent);
-  })
 
+
+
+$('#saveBtn10am').click(function () {
+  let textPresent = $('#textAreaPresent').val();
+  console.log('10am', textPresent);
+  localStorage.setItem('10am', JSON.stringify(textPresent));
 });
+
+document.getElementById('textAreaPresent').innerHTML =
+  JSON.parse(localStorage.getItem('10am'));
+
+
+
 
 
 
@@ -77,4 +77,11 @@ $(document).ready(function () {
 // TODO: Add code to display the current date in the header of the page.
 var today = dayjs();
 $('#currentDay').text(today.format('dddd, MMMM, D'));
+
+setInterval(function () {
+  var time = dayjs();
+  $('#currentTime').text(time.format('hh:mm:ss a'))
+}, 10);
+
+
 
