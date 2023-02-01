@@ -2,9 +2,9 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 
-var pastInput = $('#past');
-var presentIput = $('#present');
-var futureInput = $('#future');
+var pastInput = $('.past');
+var presentIput = $('.present');
+var futureInput = $('.future');
 var timeDisplayEl = $('#currentTime');
 
 function displayTime() {
@@ -140,5 +140,36 @@ var today = dayjs();
 $('#currentDay').text(today.format('dddd, MMMM, D'));
 
 
+// Working on creating a function that used the time-block class to assign color based on currenttime
+
+$('.time-block').each(
+  function () {
+
+    if ($(this).data('hour') < today.hour()) {
+
+
+      $(this).addClass('past');
+
+    } else if ($(this).data('hour') === today.hour()) {
+
+
+
+      $(this).addClass('present');
+
+    } else {
+
+
+
+      $(this).addClass('future');
+
+    }
+
+  }
+
+)
+
+
 displayTime()
 setInterval(displayTime, 1000);
+
+
